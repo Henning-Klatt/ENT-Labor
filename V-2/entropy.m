@@ -1,19 +1,11 @@
-% pvec = [0.2 0.3 0.4]
+function [ H ] = entropy( p_vector )
 
-function H = entropy(pvec)
+    % Index für alle Vektorelemente (Wahrcheinlichkeiten) ungleich Null: 
+    non_zero = find(p_vector);
+    
+    % Entropie:
+    % Aufsummieren aller Anteile mit Wahrscheinlichkeiten ungleich Null:
+    % (nutzen Sie Vektoroperationen, keine Schleife!)
+    H = -sum(p_vector(non_zero) .* log2(p_vector(non_zero)));
 
-    if sum(pvec) > 1
-        error("sum(pl) > 1 :(")
-    end
-
-    H = 0;
-
-    for k = 1:size(pvec, 2)
-        if pvec(k) <= 0
-            continue;
-        else
-            H = H - pvec(k)*log2(pvec(k));
-        end
-    end
 end
-
